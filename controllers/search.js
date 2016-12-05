@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
     storms.searchAsync(lat, long)
         .then(response => {
-            return res.json(response);
+            return res.render('map.html');
         })
         .catch(err => {
           console.log(err);

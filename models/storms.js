@@ -31,6 +31,8 @@ function search(lat, long, callback) {
     console.log("\tLatitude: " + lat);
     console.log("\tLongitude: " + long);
     console.log("\tSuccess");
+
+    
    //console.log("results callback");
   return callback (null, "Success");
 }
