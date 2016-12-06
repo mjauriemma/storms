@@ -96,7 +96,7 @@ function search(lat, long, yearmin, yearmax, callback) {
                   }
                 });
                 //storm.push(results);
-                if (index === results.length - 1) {
+                if (index === result.length - 1) {
                   console.log("finishing outer loop")
                   //features.push(storm);
                   return callback (null, storms)
