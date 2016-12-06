@@ -337,7 +337,7 @@
 [	"	bh131945	"	,	1945041012	,	-17.3	,	112.1	],
 [	"	bh131945	"	,	1945041018	,	-17.6	,	111.7	],
 [	"	bh131945	"	,	1945041100	,	-17.9	,	111.3	]];
-
+  function initMap() {
 	var latCenter = 0;
 	var lngCenter = 100;
 	var centerPosition = {lat:latCenter , lng: lngCenter};
@@ -409,7 +409,10 @@
 
 	  heatMapPoints.push(new google.maps.LatLng(lat,lng));
     }
-
+  }
+  </script>
+  <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2P1yJFg8NK9VgCya1mkkFxJ9mVALvHmI&libraries=visualization&callback=initMap">
   </script>
 </body>
 </html>
