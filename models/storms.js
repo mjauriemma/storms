@@ -12,6 +12,7 @@ var db = Promise.promisifyAll(dbFactory(config.db));
 var range = 10;
 // let schema = require('./schema').tweets;
 var selStorms = "Select * from `TyphoonX` where "+
+"(`TyphoonX`.`DATE` > ? and `TyphoonX`.`DATE` < ?) AND "
 "(`TyphoonX`.`LAT` > ? and `TyphoonX`.`LAT` < ?) AND "+
 "(`TyphoonX`.`LONG`> ? AND `TyphoonX`.`LONG`< ?)";
 
@@ -58,7 +59,7 @@ function search(lat, long, yearmin, yearmax, callback) {
       console.log ("Latitude adjusted" + latmin + " " + latmax + " ")
       // console.log(selStorms, [lat, 10, lat, 10, long, 10, long, 10])
 
-      return db.executeQuery(selStorms, [latmin, latmax, longmin, longmax], function (err, result) {
+      return db.executeQuery(selStorms, [yearmin, yearmax, latmin, latmax, longmin, longmax], function (err, result) {
         if (err) {
           return callback(err);
         }
