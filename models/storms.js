@@ -50,12 +50,13 @@ function search(lat, long, yearmin, yearmax, callback) {
               if (err) {
                 return callback(err);
               }
-            });
-          )};
+            }))
+          });
 
-          return callback(null, json.stringify(storms));
+          return callback(null, storms);
         }
-      });
-    }
+
+    });
+  }
 };
 exports.search = search;
