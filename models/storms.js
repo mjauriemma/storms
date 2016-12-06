@@ -9,10 +9,12 @@ let Promise = require('bluebird');
 
 var dbFactory = require('./db');
 var db = Promise.promisifyAll(dbFactory(config.db));
+var range = 10;
 // let schema = require('./schema').tweets;
-var selStorms = "Select * from `TyphoonX` where LAT > (? - ?) and " +
-                "LAT < (? + ?) and " +
-                "LONG > (? - ?) and LONG < (? + ?)"
+var selStorms = "Select * from `TyphoonX` where "+
+"(`TyphoonX`.`LAT` > -? and `TyphoonX`.`LAT` < -?) AND "+
+"(`TyphoonX`.`LONG`>-? AND `TyphoonX`.`LONG`<-?)";
+
 
 
 function search(lat, long, yearmin, yearmax, callback) {
@@ -49,7 +51,14 @@ function search(lat, long, yearmin, yearmax, callback) {
       console.log("\tYear: " + yearmax);
       console.log("\tSuccess");
 
-      return db.executeQueryAsync(selStorms, [lat, 10, lat, 10, long, 10, long, 10],callback)
+      var latmin = parseInt(lat, 10) - range;
+      var latmax = parseInt(lat, 10) + range;
+      var longmin = parseInt(long, 10) -range;
+      var longmax = parseInt(long, 10) + range;
+      console.log ("Latitude adjusted" + latmin + " " + latmax + " ")
+      // console.log(selStorms, [lat, 10, lat, 10, long, 10, long, 10])
+
+      return db.executeQueryAsync(selStorms, [latmin, latmax, longmin, longmax],callback)
       .then(function(result) {
         return result;
       })
