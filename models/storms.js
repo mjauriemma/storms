@@ -12,7 +12,7 @@ var db = Promise.promisifyAll(dbFactory(config.db));
 var range = 10;
 // let schema = require('./schema').tweets;
 var selStorms = "Select * from `TyphoonX` where "+
-"(`TyphoonX`.`DATE` > ? and `TyphoonX`.`DATE` < ?) AND "
+"(`TyphoonX`.`DATE` > ? and `TyphoonX`.`DATE` < ?) AND " +
 "(`TyphoonX`.`LAT` > ? and `TyphoonX`.`LAT` < ?) AND "+
 "(`TyphoonX`.`LONG`> ? AND `TyphoonX`.`LONG`< ?)";
 
