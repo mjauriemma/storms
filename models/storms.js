@@ -11,10 +11,10 @@ var dbFactory = require('./db');
 var db = Promise.promisifyAll(dbFactory(config.db));
 var range = 10;
 // let schema = require('./schema').tweets;
-var selStorms = "Select * from `TyphoonX` where "+
+var selStorms = "Select TyphoonNM from `TyphoonX` where "+
 "(`TyphoonX`.`DATE` > ? and `TyphoonX`.`DATE` < ?) AND " +
 "(`TyphoonX`.`LAT` > ? and `TyphoonX`.`LAT` < ?) AND "+
-"(`TyphoonX`.`LONG`> ? AND `TyphoonX`.`LONG`< ?)";
+"(`TyphoonX`.`LONG`> ? AND `TyphoonX`.`LONG`< ?) DISTINCT";
 
 
 
