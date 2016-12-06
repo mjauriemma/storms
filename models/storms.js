@@ -58,12 +58,20 @@ function search(lat, long, yearmin, yearmax, callback) {
       console.log ("Latitude adjusted" + latmin + " " + latmax + " ")
       // console.log(selStorms, [lat, 10, lat, 10, long, 10, long, 10])
 
-      return db.executeQuery(selStorms, [latmin, latmax, longmin, longmax],callback)
-      .then(function(result) {
-        console.log("result: " + result);
-        return result;
+      return db.executeQuery(selStorms, [latmin, latmax, longmin, longmax], function (err, result) {
+        if (err) {
+          return callback(err);
+        }
+        else {
+          console.log("result: " + result);
+          return callback(null, result);
+        }
       })
-      .nodeify(callback);
+      // .then(function(result) {
+      //   console.log("result: " + result);
+      //   return result;
+      // })
+      // .nodeify(callback);
 
 
    //console.log("results callback");
