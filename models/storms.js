@@ -16,6 +16,8 @@ var selStorms = "Select DISTINCT TyphoonNM from `TyphoonX` where "+
 "(`TyphoonX`.`LAT` > ? and `TyphoonX`.`LAT` < ?) AND "+
 "(`TyphoonX`.`LONG`> ? AND `TyphoonX`.`LONG`< ?)";
 
+var getPoints = "Select * FROM `TyphoonX` where TyphoonNM = ?";
+
 
 
 function search(lat, long, yearmin, yearmax, callback) {
@@ -65,15 +67,21 @@ function search(lat, long, yearmin, yearmax, callback) {
         if (err) {
           return callback(err);
         }
+        var storms = [];
         else {
           // console.log("result: " + result);
           console.log(result.length());
           result.forEach(function process (element, index, array) {
             console.log (element.TyphoonNM);
+            storms = storms + db.executeQuery(getPoints, [element.TyphoonNM], function (err, result) {
+              if (err) {
+                return callback(err);
+              }
+            }
 
           });
 
-          return callback(null, result);
+          return callback(null, storms);
         }
       })
       // .then(function(result) {
