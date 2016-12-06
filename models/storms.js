@@ -35,16 +35,17 @@ function search(lat, long, yearmin, yearmax, callback) {
       var longmax = parseInt(long, 10) + range;
       yearmin = yearmin+"01-01";
       yearmax = yearmax+"12-31";
+      var storms = [];
 
       db.executeQuery(selStorms, [yearmin, yearmax, latmin, latmax, longmin, longmax], function (err, result) {
-        var storms = [];
+
         if (err) {
           return callback(err);
         }
         else {
           // console.log("result: " + result);
           //console.log(result.length());
-          result.forEach(function process (element, index, array) {
+          return result.forEach(function process (element, index, array) {
             //console.log (element.TyphoonNM);
             db.executeQuery(getPoints, [element.TyphoonNM], function (err, results) {
               if (err) {
@@ -52,11 +53,14 @@ function search(lat, long, yearmin, yearmax, callback) {
               }
               else {
                 storms.push(results);
+                if (index === result.length) {
+                  return callback (null, storms)
+                }
               }
             })
           });
 
-          return callback(null, storms);
+          //return callback(null, storms);
         }
 
     });
