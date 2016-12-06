@@ -38,6 +38,9 @@ function search(lat, long, yearmin, yearmax, callback) {
       yearmax = yearmax+"12-31";
       var storms = [];
 
+      var storms = {"type": "FeatureCollection",
+                    "features": []}
+
       db.executeQuery(selStorms, [yearmin, yearmax, latmin, latmax, longmin, longmax], function (err, result) {
 
         if (err) {
@@ -46,15 +49,49 @@ function search(lat, long, yearmin, yearmax, callback) {
         else {
           // console.log("result: " + result);
           //console.log(result.length());
-          storms.push({"Total Storm Number" : result.length})
+          //  var storm = {
+          //    "type": "Feature",
+          //    "properties": {
+          //     //  "letter": "G",
+          //     //  "color": "blue",
+          //     //  "rank": "7",
+          //     //  "ascii": "71"
+          //     },
+          //     "geometry": {
+          //       "type": "Polyline",
+          //       "coordinates": [
+          //         [
+          //         ]
+          //       ]
+          //     }
+          //   };
+
+          //storms.push({"Total Storm Number" : result.length})
           return result.forEach(function process (element, index, array) {
             //console.log (element.TyphoonNM);
+            var storm = {
+              "type": "Feature",
+              "properties": {
+               //  "letter": "G",
+               //  "color": "blue",
+               //  "rank": "7",
+               //  "ascii": "71"
+               },
+               "geometry": {
+                 "type": "Polyline",
+                 "coordinates": [
+                   [
+                   ]
+                 ]
+               }
+             };
             db.executeQuery(getPoints, [element.TyphoonNM], function (err, results) {
               if (err) {
                 return callback(err);
               }
               else {
-                storms.push(results);
+                storm.coordinates[1].push([results.LAT, results.LONG]);
+                storms.push(storm);
                 if (index === result.length - 1) {
                   return callback (null, storms)
                 }
