@@ -54,7 +54,7 @@ function search(lat, long, yearmin, yearmax, callback) {
 
           });
 
-          return callback(null, storms);
+          return callback(null, json.stringify(storms));
         }
       });
     }
