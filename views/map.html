@@ -23,6 +23,20 @@
     <script>
       var map;
       function initMap() {
+        $.ajax({
+          type: "GET",
+          //data: arguments,
+          url:"http://ec2-50-112-218-169.us-west-2.compute.amazonaws.com:8080/search?" + arguments;
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function (data){
+            alert(data);
+          },
+
+          error: function (){
+            alert(xhr.responseText);
+          }
+        })
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 8
