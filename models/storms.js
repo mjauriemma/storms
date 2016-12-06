@@ -39,7 +39,10 @@ function search(lat, long, yearmin, yearmax, callback) {
       var storms = [];
 
       var storms = {"type": "FeatureCollection",
-                    "features": []}
+                    "features": []
+                  };
+      var features = []
+
 
       db.executeQuery(selStorms, [yearmin, yearmax, latmin, latmax, longmin, longmax], function (err, result) {
 
@@ -49,22 +52,7 @@ function search(lat, long, yearmin, yearmax, callback) {
         else {
           // console.log("result: " + result);
           //console.log(result.length());
-          //  var storm = {
-          //    "type": "Feature",
-          //    "properties": {
-          //     //  "letter": "G",
-          //     //  "color": "blue",
-          //     //  "rank": "7",
-          //     //  "ascii": "71"
-          //     },
-          //     "geometry": {
-          //       "type": "Polyline",
-          //       "coordinates": [
-          //         [
-          //         ]
-          //       ]
-          //     }
-          //   };
+
 
           //storms.push({"Total Storm Number" : result.length})
           return result.forEach(function process (element, index, array) {
@@ -90,9 +78,24 @@ function search(lat, long, yearmin, yearmax, callback) {
                 return callback(err);
               }
               else {
-                storm.coordinates[1].push([results.LAT, results.LONG]);
-                storms.push(storm);
-                if (index === result.length - 1) {
+                var coordinates = [];
+                results.forEach(function process (element, index, array) {
+                  var points = [];
+                  points.push(element.LAT);
+                  points.push(element.LONG);
+                  coordinates.push(points);
+                if (index === results.length - 1) {
+                  var array = [];
+                  array.push(coordinates);
+                  storm.geometry.coordinates = array;
+                  features.push(storm);
+                  return true;
+                }
+                });
+                //storm.push(results);
+                if (index === results.length - 1) {
+
+                  //features.push(storm);
                   return callback (null, storms)
                 }
               }
