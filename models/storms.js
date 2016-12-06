@@ -56,7 +56,7 @@ function search(lat, long, yearmin, yearmax, callback) {
 
           //storms.push({"Total Storm Number" : result.length})
           return result.forEach(function process (element, index, array) {
-            //console.log (element.TyphoonNM);
+            console.log (element.TyphoonNM);
             var storm = {
               "type": "Feature",
               "properties": {
@@ -79,7 +79,7 @@ function search(lat, long, yearmin, yearmax, callback) {
               }
               else {
                 var coordinates = [];
-                results.forEach(function process (element, index, array) {
+                return results.forEach(function process (element, index, array) {
                   console.log("Inner Loop")
                   var points = [];
                   points.push(element.LAT);
@@ -91,6 +91,7 @@ function search(lat, long, yearmin, yearmax, callback) {
                     array.push(coordinates);
                     storm.geometry.coordinates = array;
                     features.push(storm);
+                    console.log(features)
                     return true;
                   }
                 });
