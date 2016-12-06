@@ -51,7 +51,7 @@ function search(lat, long, yearmin, yearmax, callback) {
 
       return db.executeQueryAsync(selStorms, [lat, 10, lat, 10, long, 10, long, 10],callback)
       .then(function(result) {
-        return result.insertId;
+        return result;
       })
       .nodeify(callback);
 

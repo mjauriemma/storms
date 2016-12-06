@@ -10,13 +10,14 @@ let errors = require('../helpers/error');
 
 
 router.get('/', (req, res) => {
-    let latmin = req.query.latmin;
-    let longmin = req.query.longmin;
-    let latmax = req.query.latmax;
-    let longmax = req.query.longmax;
+    let long = req.query.latmin;
+    let lat = req.query.long;
+    //let latmax = req.query.latmax;
+    //let longmax = req.query.longmax;
     let yearmin = req.query.yearmin;
     let yearmax = req.query.yearmax;
-    if (!latmin || !longmin || !latmax || !longmax) {
+    //if (!latmin || !longmin || !latmax || !longmax) {
+    if (!lat || !long){
         return webUtil.processError(res, 400, 'Latitude and Longitude must be provided', 400);
     }
     if (!yearmin || yearmin < 1945) {
@@ -25,7 +26,7 @@ router.get('/', (req, res) => {
     if (!yearmax || yearmax > 2016) {
       yearmax = 2016;
     }
-      storms.searchAsync(latmin, longmin, latmax, longmax, yearmin, yearmax)
+      storms.searchAsync(lat, long, yearmin, yearmax)
           .then(response => {
               return res.send(response);
           })
