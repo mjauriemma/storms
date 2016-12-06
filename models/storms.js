@@ -46,6 +46,7 @@ function search(lat, long, yearmin, yearmax, callback) {
         else {
           // console.log("result: " + result);
           //console.log(result.length());
+          storms.push({"Total Storm Number" : result.length})
           return result.forEach(function process (element, index, array) {
             //console.log (element.TyphoonNM);
             db.executeQuery(getPoints, [element.TyphoonNM], function (err, results) {
