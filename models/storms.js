@@ -16,7 +16,7 @@ var selStorms = "Select DISTINCT TyphoonNM from `TyphoonX` where "+
 "(`TyphoonX`.`LAT` > ? and `TyphoonX`.`LAT` < ?) AND "+
 "(`TyphoonX`.`LONG`> ? AND `TyphoonX`.`LONG`< ?)";
 
-var getPoints = "Select `TyphoonX`.`TyphoonNM` `TyphoonX`.`LAT` `TyphoonX`.`LONG` " +
+var getPoints = "Select `TyphoonX`.`TyphoonNM`, `TyphoonX`.`LAT`, `TyphoonX`.`LONG`, " +
 "`TyphoonX`.`DATE` FROM `TyphoonX` where TyphoonNM = ? ORDER BY `TyphoonX`.`DATE`";
 
 
