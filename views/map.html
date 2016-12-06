@@ -1,87 +1,11 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        $.ajax({
-          type: "GET",
-          //data: arguments,
-          url:"http://ec2-50-112-218-169.us-west-2.compute.amazonaws.com:8080/search?" + arguments;
-          contentType: "application/json; charset=utf-8",
-          dataType: "json",
-          success: function (data){
-            alert(data);
-          },
-
-          error: function (){
-            alert(xhr.responseText);
-          }
-        })
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-        	// var queryStringKey = "queryString";
-        	// var connectionStringKey = "connectionString"
-        	// var queryStringValue = "Select * from TyphoonX";
-        	// var connectionStringValue = "Server=138.26.16.23;Database=Typhoon;Uid=root;Pwd=abelox1119";
-        	var arguments = 'lat=-10&long=50&yearmin=1945&yearmax=1950';
-
-        	$.ajax({
-        		type: "GET",
-        		//data: arguments,
-        		url:"http://ec2-50-112-218-169.us-west-2.compute.amazonaws.com:8080/search?" + arguments;
-        		contentType: "application/json; charset=utf-8",
-        		dataType: "json",
-        		success: function (data){
-              alert(data);
-        		},
-
-        		error: function (){
-        			alert(xhr.responseText);
-        		}
-        	})
-
-
-
-        // var flightPlanCoordinates = [
-        //   {lat: 37.772, lng: -122.214},
-        //   {lat: 21.291, lng: -157.821},
-        //   {lat: -18.142, lng: 178.431},
-        //   {lat: -27.467, lng: 153.027}
-        // ];
-        // var flightPath = new google.maps.Polyline({
-        //   path: flightPlanCoordinates,
-        //   geodesic: true,
-        //   strokeColor: '#FF0000',
-        //   strokeOpacity: 1.0,
-        //   strokeWeight: 2
-        // });
-
-        // flightPath.setMap(map);
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2P1yJFg8NK9VgCya1mkkFxJ9mVALvHmI&callback=initMap"
-    async defer></script>
-  </body>
+<body>
+  <form action="http://ec2-50-112-218-169.us-west-2.compute.amazonaws.com:8080/search" method="get">
+  <input name="lat" value="-10">
+  <input name="long" value="50">
+  <button>Search</button>
+</form>
+<script>
+  </script>
+</body>
 </html>

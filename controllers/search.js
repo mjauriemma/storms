@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
     }
       storms.searchAsync(lat, long, yearmin, yearmax)
           .then(response => {
-              return res.send(response);
+              return res.render('map2.html');
           })
           .catch(err => {
             console.log(err);
