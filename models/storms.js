@@ -58,7 +58,7 @@ function search(lat, long, yearmin, yearmax, callback) {
       console.log ("Latitude adjusted" + latmin + " " + latmax + " ")
       // console.log(selStorms, [lat, 10, lat, 10, long, 10, long, 10])
 
-      return db.executeQueryAsync(selStorms, [latmin, latmax, longmin, longmax],callback)
+      return db.executeQuery(selStorms, [latmin, latmax, longmin, longmax],callback)
       .then(function(result) {
         console.log("result: " + result);
         return result;
