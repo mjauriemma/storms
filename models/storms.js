@@ -46,9 +46,12 @@ function search(lat, long, yearmin, yearmax, callback) {
           //console.log(result.length());
           result.forEach(function process (element, index, array) {
             //console.log (element.TyphoonNM);
-            storms.push(db.executeQuery(getPoints, [element.TyphoonNM], function (err, result) {
+            storms.push(db.executeQuery(getPoints, [element.TyphoonNM], function (err, results) {
               if (err) {
                 return callback(err);
+              }
+              else {
+                return result;s
               }
             }))
           });
