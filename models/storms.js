@@ -56,6 +56,8 @@ function search(lat, long, yearmin, yearmax, callback) {
       var latmax = parseInt(lat, 10) + range;
       var longmin = parseInt(long, 10) -range;
       var longmax = parseInt(long, 10) + range;
+      yearmin = yearmin+"01-01";
+      yearmax = yearmax+"12-31";
       console.log ("Latitude adjusted" + latmin + " " + latmax + " ")
       // console.log(selStorms, [lat, 10, lat, 10, long, 10, long, 10])
 
