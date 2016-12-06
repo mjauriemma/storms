@@ -79,7 +79,7 @@ function search(lat, long, yearmin, yearmax, callback) {
               }
               else {
                 var coordinates = [];
-                return results.forEach(function process (element, index, array) {
+                results.forEach(function process (element, index, array) {
                   console.log("Inner Loop")
                   var points = [];
                   points.push(element.LAT);
@@ -92,7 +92,6 @@ function search(lat, long, yearmin, yearmax, callback) {
                     storm.geometry.coordinates = array;
                     features.push(storm);
                     console.log(features)
-                    return true;
                   }
                 });
                 //storm.push(results);
