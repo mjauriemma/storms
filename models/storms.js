@@ -80,28 +80,29 @@ function search(lat, long, yearmin, yearmax, callback) {
               else {
                 var coordinates = [];
                 results.forEach(function process (element, index, array) {
+                  console.log("Inner Loop")
                   var points = [];
                   points.push(element.LAT);
                   points.push(element.LONG);
                   coordinates.push(points);
-                if (index === results.length - 1) {
-                  var array = [];
-                  array.push(coordinates);
-                  storm.geometry.coordinates = array;
-                  features.push(storm);
-                  return true;
-                }
+                  if (index === results.length - 1) {
+                    console.log("Finishing and pushing inner loop")
+                    var array = [];
+                    array.push(coordinates);
+                    storm.geometry.coordinates = array;
+                    features.push(storm);
+                    return true;
+                  }
                 });
                 //storm.push(results);
                 if (index === results.length - 1) {
-
+                  console.log("finishing outer loop")
                   //features.push(storm);
                   return callback (null, storms)
                 }
               }
             })
           });
-
           //return callback(null, storms);
         }
 
