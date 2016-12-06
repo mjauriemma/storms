@@ -10,7 +10,7 @@ let errors = require('../helpers/error');
 
 
 router.get('/', (req, res) => {
-    let long = req.query.latmin;
+    let long = req.query.lat;
     let lat = req.query.long;
     //let latmax = req.query.latmax;
     //let longmax = req.query.longmax;
