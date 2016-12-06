@@ -53,7 +53,7 @@ function search(lat, long, yearmin, yearmax, callback) {
               }
               else {
                 storms.push(results);
-                if (index === result.length) {
+                if (index === result.length - 1) {
                   return callback (null, storms)
                 }
               }
