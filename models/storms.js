@@ -9,7 +9,7 @@ let Promise = require('bluebird');
 
 var dbFactory = require('./db');
 var db = Promise.promisifyAll(dbFactory(config.db));
-var range = 10;
+var range = 1;
 // let schema = require('./schema').tweets;
 var selStorms = "Select DISTINCT TyphoonNM from `TyphoonX` where "+
 "(`TyphoonX`.`DATE` > ? and `TyphoonX`.`DATE` < ?) AND " +
