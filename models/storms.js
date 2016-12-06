@@ -59,10 +59,10 @@ function search(lat, long, yearmin, yearmax, callback) {
             var storm = {
               "type": "Feature",
               "properties": {
-               //  "letter": "G",
-               //  "color": "blue",
-               //  "rank": "7",
-               //  "ascii": "71"
+                 "storm": element.TyphoonNM,
+                 "color": "blue",
+                 "rank": "7",
+                 "ascii": "71"
                },
                "geometry": {
                  "type": "Polygon",
