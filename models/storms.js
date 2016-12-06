@@ -37,10 +37,10 @@ function search(lat, long, yearmin, yearmax, callback) {
       yearmax = yearmax+"12-31";
 
       return db.executeQuery(selStorms, [yearmin, yearmax, latmin, latmax, longmin, longmax], function (err, result) {
+        var storms = [];
         if (err) {
           return callback(err);
         }
-        var storms = [];
         else {
           // console.log("result: " + result);
           console.log(result.length());
