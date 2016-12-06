@@ -12,8 +12,8 @@ var db = Promise.promisifyAll(dbFactory(config.db));
 var range = 10;
 // let schema = require('./schema').tweets;
 var selStorms = "Select * from `TyphoonX` where "+
-"(`TyphoonX`.`LAT` > -? and `TyphoonX`.`LAT` < -?) AND "+
-"(`TyphoonX`.`LONG`>-? AND `TyphoonX`.`LONG`<-?)";
+"(`TyphoonX`.`LAT` > ? and `TyphoonX`.`LAT` < ?) AND "+
+"(`TyphoonX`.`LONG`> ? AND `TyphoonX`.`LONG`< ?)";
 
 
 
