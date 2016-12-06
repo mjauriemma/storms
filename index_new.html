@@ -6089,21 +6089,21 @@
 	  var lastName = "";
 	  if (i > 0) lastName = locations[i-1][0]; // get last storm name for comparison
 	  
-	  //mysterious gaintLeap handler
+	  //mysterious giantLeap handler
 	  var longGap = 10;
-	  var gaintLeap = false;
-	  var nextGaintLeap = false;
+	  var giantLeap = false;
+	  var nextgiantLeap = false;
 	  var lngDifferenceFromLast = 0;  
 	  var lngDifferenceFromNext = 0;  
 	  if (i > 0) var lngDifferenceFromLast = Math.abs(locations[i][3] - locations[i-1][3]);  //calculate long difference from last point
 	  if (i < locations.length-1) var lngDifferenceFromNext = Math.abs(locations[i][3] - locations[i+1][3]);  //calculate long difference from next point
-	  if (lngDifferenceFromLast >longGap) gaintLeap = true;
-	  if (lngDifferenceFromNext >longGap) nextGaintLeap = true;
+	  if (lngDifferenceFromLast >longGap) giantLeap = true;
+	  if (lngDifferenceFromNext >longGap) nextgiantLeap = true;
 
 	  //test if the current is the start or the end
-	  if  (lastName != name || gaintLeap) image = start;
+	  if  (lastName != name || giantLeap) image = start;
 	  else if (i == locations.length-1 ) {image = stop;}
-	  else if (name != locations[i+1][0] || nextGaintLeap) {image = stop;}
+	  else if (name != locations[i+1][0] || nextgiantLeap) {image = stop;}
 	  else {image = dot;}
 	  
 	  
@@ -6129,7 +6129,7 @@
 	  
 	  ///////////date mistake?
 	  
-	  if ((name == lastName || lastName == "") && i != locations.length -1 && !gaintLeap) { //gaintLeap to deal with mysterial giant leap 
+	  if ((name == lastName || lastName == "") && i != locations.length -1 && !giantLeap) { //giantLeap to deal with mysterial giant leap 
 	    polyLinePoints.push(new google.maps.LatLng(lat,lng)); 		
 	  } else{ // plot, start a new array
 		if ( i == locations.length -1 ) polyLinePoints.push(new google.maps.LatLng(lat,lng)); //edge case: add the very last point		
