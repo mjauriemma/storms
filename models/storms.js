@@ -12,27 +12,39 @@ var db = Promise.promisifyAll(dbFactory(config.db));
 // let schema = require('./schema').tweets;
 
 
-function search(lat, long, callback) {
+function search(latmin, longmin, latmax, longmax, yearmin, yearmax, callback) {
 
-    if (lat < -90 || lat > 90) {
-      console.log("\tLatitude: " + lat);
-      console.log("\tLongitude: " + long);
+    if (latmin < -90 || latmin > 90 ||latmax <-90 || latmax > 90) {
+      console.log("\tLatitude: " + latmin);
+      console.log("\tLatitude: " + latmax);
+      console.log("\tLongitude: " + longmin);
+      console.log("\tLongitude: " + longmax);
+      console.log("\tYear: " + yearmin);
+      console.log("\tYear: " + yearmax);
       console.log("\tError: Invalid Latitude");
       return callback (new bi("Invalid Latitude"));
     }
-    else if (long < -180 || long > 180) {
-      console.log("\tLatitude: " + lat);
-      console.log("\tLongitude: " + long);
+    else if (longmin < -180 || longmin > 180 || longmax < -180 || longmax > 180) {
+      console.log("\tLatitude: " + latmin);
+      console.log("\tLatitude: " + latmax);
+      console.log("\tLongitude: " + longmin);
+      console.log("\tLongitude: " + longmax);
+      console.log("\tYear: " + yearmin);
+      console.log("\tYear: " + yearmax);
       console.log("\tError: Invalid Longitude")
       return callback (new bi("Invalid Longitude"));
     }
 
     else {
-    console.log("\tLatitude: " + lat);
-    console.log("\tLongitude: " + long);
+      console.log("\tLatitude: " + latmin);
+      console.log("\tLatitude: " + latmax);
+      console.log("\tLongitude: " + longmin);
+      console.log("\tLongitude: " + longmax);
+      console.log("\tYear: " + yearmin);
+      console.log("\tYear: " + yearmax);
     console.log("\tSuccess");
 
-    
+
    //console.log("results callback");
   return callback (null, "Success");
 }

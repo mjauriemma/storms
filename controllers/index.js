@@ -40,7 +40,7 @@ router.get('/',
      * @function apiInfo
      */
     function apiInfo(req, res) {
-      res.render('map.html');
+      return res.render('map.html');
         //return res.json(config.app);
 });
 
