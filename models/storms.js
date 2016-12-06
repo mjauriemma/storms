@@ -10,7 +10,7 @@ let Promise = require('bluebird');
 var dbFactory = require('./db');
 var db = Promise.promisifyAll(dbFactory(config.db));
 // let schema = require('./schema').tweets;
-var selStorms = "Select * from `TyphoonX` where LAT > (? - ?) and" +
+var selStorms = "Select * from `TyphoonX` where LAT > (? - ?) and " +
                 "LAT < (? + ?) and " +
                 "LONG > (? - ?) and LONG < (? + ?)"
 
