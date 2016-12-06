@@ -67,6 +67,12 @@ function search(lat, long, yearmin, yearmax, callback) {
         }
         else {
           // console.log("result: " + result);
+          console.log(result.length());
+          result.forEach(function process (element, index, array) {
+            console.log (element.TyphoonNM);
+
+          });
+
           return callback(null, result);
         }
       })
