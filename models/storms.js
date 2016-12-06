@@ -60,6 +60,7 @@ function search(lat, long, yearmin, yearmax, callback) {
 
       return db.executeQueryAsync(selStorms, [latmin, latmax, longmin, longmax],callback)
       .then(function(result) {
+        console.log("result: " + result);
         return result;
       })
       .nodeify(callback);
