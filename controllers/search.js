@@ -9,7 +9,7 @@ let webUtil = require('../helpers/web/util');
 let errors = require('../helpers/error');
 
 
-router.get('/search', (req, res) => {
+router.get('/', (req, res) => {
     let lat = req.query.lat;
     let long = req.query.long;
     let yearmin = req.query.yearmin;
