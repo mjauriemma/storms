@@ -80,7 +80,6 @@ function search(lat, long, yearmin, yearmax, callback) {
                 // var coordinates = [];
                 results.forEach(function process (element, index, array) {
                   var points = [];
-                  console.log(element.TyphoonNM)
                   points.push(element.TyphoonNM);
                   points.push(element.DATE);
                   points.push(element.LAT);
