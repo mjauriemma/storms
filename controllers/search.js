@@ -7,11 +7,9 @@ var config = require('../config/config');
 let storms = Promise.promisifyAll(require('../models/storms'));
 let webUtil = require('../helpers/web/util');
 let errors = require('../helpers/error');
-var cors = require('cors');
-let app = require('../config/app');
 
 
-router.get('/search', function (req, res)  {
+router.get('/search', (req, res) => {
     let lat = req.query.lat;
     let long = req.query.long;
     let yearmin = req.query.yearmin;
