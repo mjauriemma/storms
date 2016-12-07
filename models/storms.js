@@ -38,10 +38,10 @@ function search(lat, long, yearmin, yearmax, callback) {
       yearmax = yearmax+"12-31";
       var storms = [];
 
-      var storms = {"type": "FeatureCollection",
-                    "features": []
-                  };
-      var features = []
+      // var storms = {"type": "FeatureCollection",
+      //               "features": []
+      //             };
+      // var features = []
 
 
       db.executeQuery(selStorms, [yearmin, yearmax, latmin, latmax, longmin, longmax], function (err, result) {
@@ -56,43 +56,45 @@ function search(lat, long, yearmin, yearmax, callback) {
 
           //storms.push({"Total Storm Number" : result.length})
           return result.forEach(function process (element, index, array) {
-            var storm = {
-              "type": "Feature",
-              "properties": {
-                 "storm": element.TyphoonNM,
-                 "color": "blue",
-                 "rank": "7",
-                 "ascii": "71"
-               },
-               "geometry": {
-                 "type": "LatLng",
-                 "coordinates": [
-                   [
-                   ]
-                 ]
-               }
-             };
+            // var storm = {
+            //   "type": "Feature",
+            //   "properties": {
+            //      "storm": element.TyphoonNM,
+            //      "color": "blue",
+            //      "rank": "7",
+            //      "ascii": "71"
+            //    },
+            //    "geometry": {
+            //      "type": "LatLng",
+            //      "coordinates": [
+            //        [
+            //        ]
+            //      ]
+            //    }
+            //  };
             db.executeQuery(getPoints, [element.TyphoonNM], function (err, results) {
               if (err) {
                 return callback(err);
               }
               else {
-                var coordinates = [];
+                // var coordinates = [];
                 results.forEach(function process (element, index, array) {
                   var points = [];
+                  points.push(element.TyphonNM);
+                  points.push(element.DATE);
                   points.push(element.LAT);
                   points.push(element.LONG);
-                  coordinates.push(points);
-                  if (index === results.length - 1) {
-                    var array = [];
-                    array.push(coordinates);
-                    storm.geometry.coordinates = array;
-                    features.push(storm);
-                  }
+                  storms.push(points);
+                  // if (index === results.length - 1) {
+                  //   var array = [];
+                  //   array.push(coordinates);
+                  //   storm.geometry.coordinates = array;
+                  //   features.push(storm);
+                  // }
                 });
                 //storm.push(results);
                 if (index === result.length - 1) {
-                  storms.features = features;
+                  // storms.features = features;
                   //features.push(storm);
                   return callback (null, storms)
                 }
