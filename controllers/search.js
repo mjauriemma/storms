@@ -30,7 +30,7 @@ router.get('/', cors(config.cors), (req, res) => {
     }
       storms.searchAsync(lat, long, yearmin, yearmax)
           .then(response => {
-              return res.send(response);
+              return res.json(response);
           })
           .catch(err => {
             console.log(err);
