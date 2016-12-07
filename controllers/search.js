@@ -7,6 +7,8 @@ var config = require('../config/config');
 let storms = Promise.promisifyAll(require('../models/storms'));
 let webUtil = require('../helpers/web/util');
 let errors = require('../helpers/error');
+var cors = require('cors');
+
 
 
 router.get('/', cors(config.cors), (req, res) => {
