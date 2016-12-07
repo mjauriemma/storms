@@ -94,7 +94,7 @@ function search(lat, long, yearmin, yearmax, callback) {
                 if (index === result.length - 1) {
                   storms.features = features;
                   //features.push(storm);
-                  return callback (null, JSON.stringify(storms, null, 2))
+                  return callback (null, storms)
                 }
               }
             })
