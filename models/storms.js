@@ -65,7 +65,7 @@ function search(lat, long, yearmin, yearmax, callback) {
                  "ascii": "71"
                },
                "geometry": {
-                 "type": "Polygon",
+                 "type": "Polyline",
                  "coordinates": [
                    [
                    ]
