@@ -10,13 +10,8 @@ let errors = require('../helpers/error');
 var cors = require('cors');
 let app = require('../config/app');
 
-router.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
-router.get('/', cors(config.cors), function (req, res)  {
+app.get('/search', cors(config.cors), function (req, res)  {
     let lat = req.query.lat;
     let long = req.query.long;
     let yearmin = req.query.yearmin;
@@ -39,35 +34,6 @@ router.get('/', cors(config.cors), function (req, res)  {
           });
 
 });
-
-router.post('/', (req, res) => {
-    let lat = req.query.lat;
-    let long = req.query.long;
-    //let latmax = req.query.latmax;
-    //let longmax = req.query.longmax;
-    let yearmin = req.query.yearmin;
-    let yearmax = req.query.yearmax;
-    //if (!latmin || !longmin || !latmax || !longmax) {
-    if (!lat || !long){
-        return webUtil.processError(res, 400, 'Latitude and Longitude must be provided', 400);
-    }
-    if (!yearmin || yearmin < 1945) {
-      yearmin = 1945;
-    }
-    if (!yearmax || yearmax > 2016) {
-      yearmax = 2016;
-    }
-      storms.searchAsync(lat, long, yearmin, yearmax)
-          .then(response => {
-              return res.send(response);
-          })
-          .catch(err => {
-            console.log(err);
-              return webUtil.processError(res, 500, err.message);
-          });
-
-});
-
 
 
 
