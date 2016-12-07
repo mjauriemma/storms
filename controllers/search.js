@@ -11,7 +11,7 @@ var cors = require('cors');
 
 
 
-router.get('/', cors(config.cors), function (req, res) => {
+router.get('/', cors(config.cors), function (req, res)  {
     let lat = req.query.lat;
     let long = req.query.long;
     //let latmax = req.query.latmax;

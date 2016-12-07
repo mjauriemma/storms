@@ -15,6 +15,6 @@ var app = require('./config/app')();
 
 // Start the server
 var server = http.createServer(app);
-server.listen('8080', function () {
-    console.log("%s listening on port %s.", config.app.name, 8080);
+server.listen('80', function () {
+    console.log("%s listening on port %s.", config.app.name, 80);
 });
