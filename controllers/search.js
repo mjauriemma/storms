@@ -11,7 +11,7 @@ var cors = require('cors');
 let app = require('../config/app');
 
 
-app.get('/search', cors(config.cors), function (req, res)  {
+router.get('/search', function (req, res)  {
     let lat = req.query.lat;
     let long = req.query.long;
     let yearmin = req.query.yearmin;
