@@ -31,10 +31,14 @@ router.get('/', cors(config.cors), function (req, res)  {
     }
       storms.searchAsync(lat, long, yearmin, yearmax)
           .then(response => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
               return res.json(response);
           })
           .catch(err => {
             console.log(err);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
               return webUtil.processError(res, 500, err.message);
           });
 
