@@ -3,13 +3,13 @@
 let Promise = require('bluebird');
 let express = require('express');
 let router = express.Router();
-
+var config = require('../config/config');
 let storms = Promise.promisifyAll(require('../models/storms'));
 let webUtil = require('../helpers/web/util');
 let errors = require('../helpers/error');
 
 
-router.get('/', (req, res) => {
+router.get('/', cors(config.cors), (req, res) => {
     let lat = req.query.lat;
     let long = req.query.long;
     //let latmax = req.query.latmax;
