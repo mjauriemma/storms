@@ -29,6 +29,11 @@ function search(lat, long, yearmin, yearmax, callback) {
     else if (long < -180 || long > 180) {
       return callback (new bi("Invalid Longitude"));
     }
+    else if (yearmin>yearmax) {
+      var temp = yearmax;
+      yearmax = yearmin;
+      yearmin = temp;
+    }
     else {
       var latmin = parseInt(lat, 10) - range;
       var latmax = parseInt(lat, 10) + range;

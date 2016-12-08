@@ -5,7 +5,8 @@ var should = require('should');
 var errors = require('./../../helpers/error');
 var storms = require('./../../models/storms');
 
-
+var  yearmin = "1945";
+var  yearmax = "2016";
 var  latLow = -91;
 var  latEdgeLow= -90;
 var  latValidLow= -50;
@@ -25,21 +26,21 @@ var  longHigh= 181;
 describe('Storm Data Access', function() {
     describe('Valid Search', function() {
         it('Should Return Successfully', function(done) {
-            storms.search(latZero, longZero, function(err,results) {
+            storms.search(latZero, longZero, yearmin, yearmax, function(err,results) {
               should.not.exist(err);
               results.should.be.ok;
               return done();
             })
         });
         it('Should Return Successfully', function(done) {
-            storms.search(latValidHigh, longValidHigh, function(err,results) {
+            storms.search(latValidHigh, longValidHigh, yearmin, yearmax, function(err,results) {
               should.not.exist(err);
               results.should.be.ok;
               return done();
             })
         });
         it('Should Return Successfully', function(done) {
-            storms.search(latValidLow, longValidLow, function(err,results) {
+            storms.search(latValidLow, longValidLow, yearmin, yearmax, function(err,results) {
               should.not.exist(err);
               results.should.be.ok;
               return done();
@@ -48,14 +49,14 @@ describe('Storm Data Access', function() {
     });
         describe('Invalid Search', function() {
             it('Should Error', function(done) {
-                storms.search(latLow, longLow, function(err,results) {
+                storms.search(latLow, longLow, yearmin, yearmax, function(err,results) {
                   err.should.be.ok.and.instanceOf(errors.BadInput);
                   should.not.exist(results);
                   return done();
                 })
             });
             it('Should Error', function(done) {
-                storms.search(latHigh, longHigh, function(err,results) {
+                storms.search(latHigh, longHigh, yearmin, yearmax, function(err,results) {
                   err.should.be.ok.and.instanceOf(errors.BadInput);
                   should.not.exist(results);
                   return done();
@@ -65,7 +66,7 @@ describe('Storm Data Access', function() {
         });
     describe('Upper Latitude Boundary', function () {
       it('Should Return Successfully', function (done) {
-        storms.search(latEdgeHigh, longZero, function (err,results) {
+        storms.search(latEdgeHigh, longZero, yearmin, yearmax, function (err,results) {
           should.not.exist(err);
           results.should.be.ok;
           return done();
@@ -74,7 +75,7 @@ describe('Storm Data Access', function() {
     })
     describe('Lower Latitude Boundary', function () {
       it('Should Return Successfully', function (done) {
-        storms.search(latEdgeLow, longZero, function (err,results) {
+        storms.search(latEdgeLow, longZero, yearmin, yearmax, function (err,results) {
           should.not.exist(err);
           results.should.be.ok;
           return done();
@@ -83,7 +84,7 @@ describe('Storm Data Access', function() {
     })
     describe('Invalid Latitude High', function () {
       it('Should Error', function (done) {
-        storms.search(latHigh, longZero, function (err,results) {
+        storms.search(latHigh, longZero, yearmin, yearmax, function (err,results) {
           err.should.be.ok.and.instanceOf(errors.BadInput);
           should.not.exist(results);
           return done();
@@ -92,7 +93,7 @@ describe('Storm Data Access', function() {
     })
     describe('Invalid Latitude Low', function () {
       it('Should Error', function (done) {
-        storms.search(latLow, longZero, function (err,results) {
+        storms.search(latLow, longZero, yearmin, yearmax, function (err,results) {
           err.should.be.ok.and.instanceOf(errors.BadInput);
           should.not.exist(results);
           return done();
@@ -102,7 +103,7 @@ describe('Storm Data Access', function() {
     //Longitude Tests
     describe('Upper Longitude Boundary', function () {
       it('Should Return Successfully', function (done) {
-        storms.search(latZero, longEdgeHigh, function (err,results) {
+        storms.search(latZero, longEdgeHigh, yearmin, yearmax, function (err,results) {
           should.not.exist(err);
           results.should.be.ok;
           return done();
@@ -111,7 +112,7 @@ describe('Storm Data Access', function() {
     })
     describe('Lower Longitude Boundary', function () {
       it('Should Return Successfully', function (done) {
-        storms.search(latZero, longEdgeLow, function (err,results) {
+        storms.search(latZero, longEdgeLow, yearmin, yearmax, function (err,results) {
           should.not.exist(err);
           results.should.be.ok;
           return done();
@@ -120,7 +121,7 @@ describe('Storm Data Access', function() {
     })
     describe('Invalid Longitude High', function () {
       it('Should Error', function (done) {
-        storms.search(latZero, longHigh, function (err,results) {
+        storms.search(latZero, longHigh, yearmin, yearmax, function (err,results) {
           err.should.be.ok.and.instanceOf(errors.BadInput);
           should.not.exist(results);
           return done();
@@ -129,9 +130,36 @@ describe('Storm Data Access', function() {
     })
     describe('Invalid Longitude Low', function () {
       it('Should Error', function (done) {
-        storms.search(latZero, longLow, function (err,results) {
+        storms.search(latZero, longLow, yearmin, yearmax, function (err,results) {
           err.should.be.ok.and.instanceOf(errors.BadInput);
           should.not.exist(results);
+          return done();
+        })
+      })
+    })
+    describe('Low Minimum Year', function () {
+      it('Should Return Successfully', function (done) {
+        storms.search(latZero, longLow, "1940", yearmax, function (err,results) {
+          should.not.exist(err);
+          results.should.be.ok;
+          return done();
+        })
+      })
+    })
+    describe('High Maximum Year', function () {
+      it('Should Return Successfully', function (done) {
+        storms.search(latZero, longLow, yearmin, "2222", function (err,results) {
+          should.not.exist(err);
+          results.should.be.ok;
+          return done();
+        })
+      })
+    })
+    describe('Year Values Flipped', function () {
+      it('Should Return Successfully', function (done) {
+        storms.search(latZero, longLow, yearmax, yearmin, function (err,results) {
+          should.not.exist(err);
+          results.should.be.ok;
           return done();
         })
       })
