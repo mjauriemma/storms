@@ -22,7 +22,7 @@ var getPoints = "Select `TyphoonX`.`TyphoonNM`, `TyphoonX`.`LAT`, `TyphoonX`.`LO
 
 
 function search(lat, long, yearmin, yearmax, callback) {
-
+    console.log("Searching. . . ")
     if (lat < -90 || lat > 90) {
       return callback (new bi("Invalid Latitude"));
     }
@@ -48,7 +48,7 @@ function search(lat, long, yearmin, yearmax, callback) {
       //             };
       // var features = []
 
-
+      console.log("Querying Database. . .")
       db.executeQuery(selStorms, [yearmin, yearmax, latmin, latmax, longmin, longmax], function (err, result) {
 
         if (err) {
@@ -101,6 +101,7 @@ function search(lat, long, yearmin, yearmax, callback) {
                 if (index === result.length - 1) {
                   // storms.features = features;
                   //features.push(storm);
+                  console.log("Returning Results!")
                   return callback (null, storms)
                 }
               }
