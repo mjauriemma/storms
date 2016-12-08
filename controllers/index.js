@@ -1,7 +1,8 @@
 'use strict';
 
 /**
- * Dynamically load all of the routes and export them.
+ * Main Controller (route) for the app
+ * load routes from other router exporting files (search.js)
  * @author Matthew Auriemma
  * @module storms/controllers/index
  */
@@ -13,7 +14,7 @@ var router = express.Router();
 
 var config = require('../config/config');
 
-
+//Magic that enables /filename/ for endpoints
 fs.readdirSync(__dirname + '/').forEach(function(file) {
     var routeName = file.replace('.js', '');
 
@@ -23,25 +24,11 @@ fs.readdirSync(__dirname + '/').forEach(function(file) {
 });
 
 /**
- * @api {get} / Get Service Info
- * @apiName GetSplashPage
- * @apiGroup Root
- *
- * @apiDescription Get basic information about this Service.
- *
- * @apiSuccess {Object} app app information
+ * Base page for the app - loads hurricaneExplorer for the user
  */
 router.get('/',
-    /**
-     * Fetch API Information.
-     * @param {express.Request} req request
-     * @param {express.Response} res response
-     *
-     * @function apiInfo
-     */
     function apiInfo(req, res) {
       return res.render('hurricaneExplorer.html');
-        //return res.json(config.app);
 });
 
 module.exports = router;
