@@ -5,7 +5,7 @@
   "author": "Matthew Auriemma <mjaur@uab.edu>",
   "scripts": {
     "start": "node index.js",
-    "test": "NODE_ENV=test ./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- tests --recursive -R spec --timeout 30000",
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- tests --recursive -R spec --timeout 30000",
     "cover": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- tests --recursive -R spec --timeout 30000",
     "jsdoc": "./node_modules/.bin/jsdoc -r config/* controllers/* helpers/* middleware/* models/* scripts/* README.md -d docs",
     "apidoc": "./node_modules/.bin/apidoc -i controllers -o apidocs"
